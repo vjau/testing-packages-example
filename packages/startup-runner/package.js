@@ -1,5 +1,5 @@
 Package.describe({
-  name: 'email-on-startup',
+  name: 'startup-runner',
   version: '0.0.1',
   // Brief, one-line summary of the package.
   summary: '',
@@ -10,24 +10,14 @@ Package.describe({
   documentation: 'README.md'
 });
 
-Npm.depends({
-  "sinon": "1.14.1"
-});
-
 Package.onUse(function(api) {
   api.versionsFrom('1.1.0.2');
-  api.use('coffeescript');
-  api.use('meteor-platform');
-  api.use('fake-email');
-  api.export('EmailOnStartup', ['server'], {testOnly: true});
-  api.addFiles('email-on-startup.coffee');
+  api.addFiles('startup-runner.js');
+  api.export('StartupRunner');
 });
 
 Package.onTest(function(api) {
-  api.use('coffeescript');
   api.use('tinytest');
-  api.use('fake-email');
-  api.use('email-on-startup');
-  api.addFiles('email-on-startup-tests.coffee', ['server']);
-  // api.addFiles('email-on-startup-tests.js', ['server']);
+  api.use('startup-runner');
+  api.addFiles('startup-runner-tests.js');
 });

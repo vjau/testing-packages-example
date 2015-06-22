@@ -1,5 +1,5 @@
 Package.describe({
-  name: 'fake-email',
+  name: 'main-package',
   version: '0.0.1',
   // Brief, one-line summary of the package.
   summary: '',
@@ -12,7 +12,8 @@ Package.describe({
 
 Package.onUse(function(api) {
   api.versionsFrom('1.1.0.2');
-  api.addFiles('fake-email2.js');
-  api.export('FakeEmail');
+  api.use('fake-email');
+  api.use('startup-runner');
+  api.addFiles('main-package.js');
 });
 
