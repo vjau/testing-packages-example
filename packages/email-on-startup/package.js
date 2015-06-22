@@ -10,13 +10,24 @@ Package.describe({
   documentation: 'README.md'
 });
 
+Npm.depends({
+  "sinon": "1.14.1"
+});
+
 Package.onUse(function(api) {
   api.versionsFrom('1.1.0.2');
-  api.addFiles('email-on-startup.js');
+  api.use('coffeescript');
+  api.use('meteor-platform');
+  api.use('fake-email');
+  api.export('EmailOnStartup', ['server'], {testOnly: true});
+  api.addFiles('email-on-startup.coffee');
 });
 
 Package.onTest(function(api) {
+  api.use('coffeescript');
   api.use('tinytest');
+  api.use('fake-email');
   api.use('email-on-startup');
-  api.addFiles('email-on-startup-tests.js');
+  api.addFiles('email-on-startup-tests.coffee', ['server']);
+  // api.addFiles('email-on-startup-tests.js', ['server']);
 });
